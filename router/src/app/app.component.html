@@ -1,5 +1,6 @@
-<a [routerLink]="['/']">主页</a>
-<a [routerLink]="['/product']">商品详情页</a>
+<a [routerLink]="['/home']">主页</a>
+<!--<a [routerLink]="['/product']" [queryParams]="{id: 1}">商品详情页</a>--><!--第一种，使用查询参数传递数据-->
+<a [routerLink]="['/product', 2]">商品详情页</a><!--第一种，从路由路径中传递数据-->
 <button nz-button nzType="primary" (click)="toProductDetails()">商品详情页</button>
 
 <router-outlet></router-outlet><!--路由内容显示位置占位符-->

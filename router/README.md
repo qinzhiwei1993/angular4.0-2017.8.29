@@ -1,29 +1,34 @@
-生成命令行： ng new router --router 自动生成带路由模块的angular项目
-# Router
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1、 ng new router --router   自动生成带路由模块的angular项目
+2、 路有的5个常用对象: 
+        routes: 配置路由的
+        routerLinker: html中设置跳转链接的
+        router: js中设置跳转的
+        router-outlet: 插座，显示路由内容位置占位符
+        ActivatedRoute: 当前激活的路由
+3、三种传递查询参数的方式
+  (1) 在查询参数中传递数据  /product?name=Name&pwd=Pwd
+      <a [routerLink]="['/product']" [queryParams]="{id: 1}">商品详情页</a>
+      this.productId = this.routeInfo.snapshot.queryParams['id'];//从查询参数中取，第一种方法
+      
+  (2) 在路由路径中传递数据 { path: 'product/:id }  
+      <a [routerLink]="['/product', 2]">商品详情页</a>
+      this.productId = this.routeInfo.snapshot.params['id'];//从参数中去，第二种方法
+      
+  (3) 在路由配置中传递数据 {path: 'product', component: ProductComponent, data: [{isProd: true}]}
+     拿到传递数据的方式：ActivatedRouter.data[0][isProd]
+     
+     参数快照：this.routeInfo.snapshot.params['id']
+     参数订阅：
+     
+4、重定向路由
+    {path:'', redirectTo: '/home', pathMatch: 'full'},//重定向路由
+    
+    
+5、子路由
+    {path: 'product/:id', component: ProductComponent, children:[//子路由
+        {path: '', component: ProductDescComponent},
+        {path: 'seller/:id', component: SellerInfoComponent}
+      ]},
+      
+    <a [routerLink]="['./']">商品描述</a>   ./表示找当前的子路由
+    <a [routerLink]="['./seller', 99]">销售员信息</a>  
