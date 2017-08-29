@@ -12,14 +12,16 @@
       
   (2) 在路由路径中传递数据 { path: 'product/:id }  
       <a [routerLink]="['/product', 2]">商品详情页</a>
-      this.productId = this.routeInfo.snapshot.params['id'];//从参数中去，第二种方法
+      this.productId = this.routeInfo.snapshot.params['id'];//从路由路径参数中取，第二种方法
       
   (3) 在路由配置中传递数据 {path: 'product', component: ProductComponent, data: [{isProd: true}]}
      拿到传递数据的方式：ActivatedRouter.data[0][isProd]
      
-     参数快照：this.routeInfo.snapshot.params['id']
-     参数订阅：
-     
+     参数快照：this.routeInfo.snapshot.params['id']   
+     参数订阅：this.routeInfo.params.subscribe(     id值变化时，可以随时订阅到变化的值
+          (params: Params) => { this.productId = params['id'] }
+     )
+     
 ## 4、重定向路由
     {path:'', redirectTo: '/home', pathMatch: 'full'},//重定向路由
     
@@ -30,5 +32,5 @@
         {path: 'seller/:id', component: SellerInfoComponent}
       ]},
       
-    <a [routerLink]="['./']">商品描述</a>   ./表示找当前的子路由
+    <a [routerLink]="['./']">商品描述</a>   ./表示找到 当前下的 子路由
     <a [routerLink]="['./seller', 99]">销售员信息</a>  
