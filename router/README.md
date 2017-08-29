@@ -1,3 +1,4 @@
+生成命令行： ng new router --router 自动生成带路由模块的angular项目
 # Router
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
