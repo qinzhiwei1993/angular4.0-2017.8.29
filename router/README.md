@@ -44,4 +44,5 @@
                     <a [routerLink]="[{outlets: {'aux': 'chat'}}]">开始聊天</a>
                     <a [routerLink]="[{outlets: {'aux': null}}]">结束聊天</a>
         设置跳转到当前辅助路由页面时，同级的主路由显示  primary代表的是主路由
-                    <a [routerLink]="[primary: '/home', {outlets: {'aux': 'chat'}}]">开始聊天</a>
+                    <a [routerLink]="[primary: 'home', {outlets: {'aux': 'chat'}}]">开始聊天</a>
+                    切记上面的primary 是没有斜线的，直接写路径即可
