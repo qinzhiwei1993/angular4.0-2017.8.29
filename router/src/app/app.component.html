@@ -3,4 +3,10 @@
 <a [routerLink]="['/product', 2]">商品详情页</a><!--第一种，从路由路径中传递数据-->
 <button nz-button nzType="primary" (click)="toProductDetails()">商品详情页</button>
 
-<router-outlet></router-outlet><!--路由内容显示位置占位符-->
+<a [routerLink]="[{outlets: { aux: 'chat'}}]">开始聊天</a>
+<!--<a [routerLink]="[{outlets: {primary: 'home', aux: 'chat'}}]">开始聊天</a>--> <!--设置跳转到当前辅助路由页面时，同级的主路由显示  primary代表的是主路由-->
+<a [routerLink]="[{outlets: {aux: null}}]">结束聊天</a>
+
+
+<router-outlet></router-outlet><!--路由内容显示位置占位符， 未命名的路由为主路由-->
+<router-outlet name="aux"></router-outlet><!--辅助路由-->

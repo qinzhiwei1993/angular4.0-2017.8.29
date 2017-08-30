@@ -34,3 +34,14 @@
       
     <a [routerLink]="['./']">商品描述</a>   ./表示找到 当前下的 子路由
     <a [routerLink]="['./seller', 99]">销售员信息</a>  
+    
+## 6、辅助路由
+    通常情况下，一个组件只有一个插座(router-outlet)，但是辅助路由，允许你一个组件可以拥有许多插座。
+    实现一个辅助路由，需要三步：
+        a:在html页面中，添加辅助路由， <router-outlet name="aux"></router-outlet>  aux为辅助路由的名字，没有命名的路由为主路由
+        b:在路由配置中，配置辅助路由，{path:'chat', component: ChatComponent, outlet: 'aux'}， 跳转到chat组件，显示在aux的插座中，即路由占位符中
+        c:添加跳转链接
+                    <a [routerLink]="[{outlets: {'aux': 'chat'}}]">开始聊天</a>
+                    <a [routerLink]="[{outlets: {'aux': null}}]">结束聊天</a>
+        设置跳转到当前辅助路由页面时，同级的主路由显示  primary代表的是主路由
+                    <a [routerLink]="[primary: '/home', {outlets: {'aux': 'chat'}}]">开始聊天</a>
