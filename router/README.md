@@ -46,3 +46,24 @@
         设置跳转到当前辅助路由页面时，同级的主路由显示  primary代表的是主路由
                     <a [routerLink]="[primary: 'home', {outlets: {'aux': 'chat'}}]">开始聊天</a>
                     切记上面的primary 是没有斜线的，直接写路径即可
+
+
+## 7、路由守卫
+     什么情况下使用路由守卫？
+        1、判断用户是否拥有权限进入路由  
+              CanActivate：处理导航到某路由的情况
+        2、判断用户是否可以离开当前路由 ，提醒用户进行保存操作
+              CanDeActivate：处理从当前路由离开的情况
+        3、Resolve: 再激活路由之前获取数据  ，确保在跳转后可以拿到所有的数据
+        
+        
+     CanActivate  :
+            a:声明login.guard.ts类，引用ruoter中的CanActivate接口，实现canActivate方法，当返回值为true时，可以进行路由跳转
+            b:在路由配置中，在商品详情路由配置canActivate属性，是一个数组，定义路由守卫的，只有所有的值为true，才能进行路由跳转
+            c:在路由配置的providers中，添加LoginGuard的依赖支持
+            
+     CanDeActivate:
+            a:和CanActivate 有少许的区别，在导入CanActivate的时候，需要制定泛型(受保护的组件类型),里面的canDeactivate的方法中，有一个
+              参数component:ProductComponent， 这里的component就是保护的组件，可以获取组件的信息，进行判断是否可以离开
+              
+     Resolve：用法基本相似，看product.resolve.ts       
